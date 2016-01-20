@@ -4,31 +4,31 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
     <title>Gises</title>
-    <link rel="stylesheet" href="https://js.arcgis.com/3.15/esri/css/esri.css">
     <style>
-        html, body, #map {
-            height: 100%;
-            width: 100%;
+        html, body, #map-canvas {
             margin: 0;
             padding: 0;
-        }
-        body {
-            background-color: #FFF;
-            overflow: hidden;
-            font-family: "Trebuchet MS";
+            height: 100%;
         }
     </style>
-    <script src="https://js.arcgis.com/3.15/"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
     <script>
         var map;
 
-        require(["esri/map", "esri/geometry/webMercatorUtils", "dojo/domReady!"], function(Map) {
-            map = new Map("map", {
-                basemap: "topo",  //For full list of pre-defined basemaps, navigate to http://arcg.is/1JVo6Wd
-                center: [-122.45, 37.75], // longitude, latitude
-                zoom: 13
-            });
-        });
+        function initialize() {
+            var mapOptions = {
+                zoom: 9,
+                center: new google.maps.LatLng(37.75,-122.45),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
     </script>
 
     <script>
@@ -75,13 +75,12 @@
 
 //            alert(act_obj);
 //            alert(act_obj.action);
-            alert(act_obj.params.lat);
+//            alert(act_obj.params.lat);
             var lat = act_obj.params.lat;
             var long = act_obj.params.long;
-            var mapPoint = new esri.geometry.Point(long, lat);
-            var webmpt = esri.geometry.geographicToWebMercator(mapPoint);
 
-            map.centerAt(mapPoint);
+            var goto_point = new google.maps.LatLng( lat,  long) ;
+            map.setCenter(goto_point);
 
         }
 
@@ -96,7 +95,7 @@
 
     <tr height="97%">
         <td width="100%">
-            <div id="map"></div>
+            <div id="map-canvas" ></div>
         </td>
     </tr>
 
