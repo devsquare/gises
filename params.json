@@ -1,1 +1,7 @@
-{"name":"Gises","tagline":"gis + es + nlp","body":"Welcome to Gises\r\n","google":"","note":"Don't delete this file! It's used internally to help with page regeneration."}
+{
+  "name": "Gises",
+  "tagline": "gis + sanscript (English meets RISC)",
+  "body": "Welcome to Gises!\r\n\r\ngis + sanscript (English meets RISC). Uses a 'synapse' kind of data structure to store information",
+  "google": "",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
